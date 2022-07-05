@@ -1,0 +1,15 @@
+<h1> The Top Tweeters </h1>
+
+<% @users.each do |user| %>
+  <b><%= user.name %></b><br>
+  @<%= user.handle %><br>
+  <i><%= user.bio %></i><br>
+  <%= button_to "Update User", edit_user_path(user), method: :get, form: {style: 'display:inline-block;'} %>
+  <%= button_to "Show User", user_path(user), method: :get, form: {style: 'display:inline-block;'} %>
+  <%= button_to "Delete User", user_path(user), method: :delete, form: {style: 'display:inline-block;'} %> <br><br>
+<% end %><br>
+
+<%= link_to "Check out the most popular tweets", tweets_path %><br>
+<%= link_to "Get back to the main page", root_path %><br><br>
+
+<%= button_to "Create a new User", new_user_path, method: :get %>

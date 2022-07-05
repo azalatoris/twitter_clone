@@ -1,0 +1,6 @@
+<h1> Tweet </h1>
+
+<%= @tweet.content %><br>
+by <i><b>@<%= @tweet.user.name %></b></i><br>
+on <%= @tweet.created_at.strftime("%I:%M %p, %b %-dth, %Y") %>
+

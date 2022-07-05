@@ -1,0 +1,29 @@
+<h1> User Profile </h1>
+<b><%= @user.name %></b><br>
+@<%= @user.handle %><br>
+<i><%= @user.bio %></i><br>
+<%= @user.email %><br>
+<i>Tweets since on <%= @user.created_at.strftime("%B %d, %Y") %></i><br>
+
+<p> Tweets by the user:<br>
+
+<% @user.tweets.reverse.each do |tweet| %>
+  <%= "#{tweet.created_at.strftime("%I:%M %p")}" %>: 
+  <b><%= "#{tweet.content}" %></b><br>
+  <%= tweet.likes.count == 1 ? "Liked by #{tweet.likes.count} person" : "Liked by #{tweet.likes.count} people" %><br>
+  <% end %>
+</p>
+
+<p> 
+  <%= "#{@user.name} also liked:" %> <br>
+  <% @user.liked_tweets.reverse.each do |liked| %>
+  <%= "#{liked.content} by @#{liked.user.handle} on #{liked.created_at.strftime("%-dth of %B, %Y")}" %><br>
+  <% end %><br>
+</p>
+
+<%= link_to "Back to Users", users_path %><br>
+<%= link_to "Check out the most popular tweets", tweets_path %><br>
+<%= link_to "Get back to the main page", root_path %><br><br>
+
+<%= button_to "Update User", edit_user_path(@user), method: :get, form: {style: 'display:inline-block;'} %>
+<%= button_to "Destroy User", user_path(@user), method: :delete, form: {style: 'display:inline-block;'} %><br>

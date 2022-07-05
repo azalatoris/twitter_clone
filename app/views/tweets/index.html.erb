@@ -1,0 +1,10 @@
+<h1> Most Popular Tweets of today </h1>
+
+<% @tweets.each do |tweet| %>
+  <b>@<%= tweet.user.handle %> at <%= tweet.created_at.strftime("%I:%M %p") %></b><br>
+  <i><%= tweet.content %></i><br>
+  <%= tweet.likes.count.to_s.end_with?("1") ? "#{tweet.likes.count} person likes this" : "#{tweet.likes.count} people like this" %><br><br>
+<% end %><br>
+
+<%= link_to "Explore the users", users_path %><br>
+<%= link_to "Get back to the main page", root_path %>
