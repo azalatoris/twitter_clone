@@ -1,4 +1,4 @@
-<h1> Most Popular Tweets of today </h1>
+<h1> Today's most popular tweets </h1>
 
 <% @tweets.each do |tweet| %>
   <b>@<%= tweet.user.handle %> at <%= tweet.created_at.strftime("%I:%M %p") %></b><br>
