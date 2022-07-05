@@ -20,10 +20,5 @@ RSpec.describe User, type: :model do
   it { should allow_value("a@a.com").for (:email) }
   it { should_not allow_value("algirdas.zalatoris").for (:email) }
 
-  describe 'user can like a post' do
-    specify do
-      expect(like.user) {  }
-    end
-  end
 end
 
