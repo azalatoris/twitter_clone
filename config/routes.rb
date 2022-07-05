@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :likes
 
   namespace :api do
-    resources :users, only: %i[create, index, show, update, destroy]
+    resources :users, only: %i[create index show update destroy]
   end
 end
