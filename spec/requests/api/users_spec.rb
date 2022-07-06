@@ -14,6 +14,7 @@ RSpec.describe 'API Users', type: :request do
       "name" => user.name,
       "handle" => user.handle,
       "bio" => user.bio,
+      "email" => user.email,
       "created_at" => user.created_at.to_i,
       "updated_at" => user.updated_at.to_i
     }])
@@ -35,6 +36,7 @@ RSpec.describe 'API Users', type: :request do
         "name" => user.name,
         "handle" => user.handle,
         "bio" => user.bio,
+        "email" => user.email,
         "created_at" => user.created_at.to_i,
         "updated_at" => user.updated_at.to_i,
         "tweets" => []
@@ -50,6 +52,7 @@ RSpec.describe 'API Users', type: :request do
           "name" => user.name,
           "handle" => user.handle,
           "bio" => user.bio,
+          "email" => user.email,
           "created_at" => user.created_at.to_i,
           "updated_at" => user.updated_at.to_i,
           "tweets" => [{
@@ -90,5 +93,22 @@ RSpec.describe 'API Users', type: :request do
       })
     end
     specify { expect { api_response }.to change(User, :count).by(1) }
+
+    context 'when params are incorrect' do
+      let(:params) { {name: ""} }
+
+      specify { expect(api_response).to have_http_status(422) }
+      specify { expect { api_response}.not_to change(User, :count) }
+      specify do
+        expect(JSON.parse(api_response.body)).to include(
+          {
+            "errors" => include(
+              "Name can't be blank", 
+              "Handle can't be blank"
+            )
+          }
+        )
+      end
+    end
   end
 end
