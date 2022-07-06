@@ -1,7 +1,7 @@
 <h1> Create a new Tweet </h1>
 
 <% if @tweet.errors.any? %>
-  <p> These errors prevented tweet from being created: 
+  <p> These errors prevented the tweet from being created: 
     <ul>
       <% @tweet.errors.full_messages.each do |msg| %>
         <li> <%= msg %> </li>

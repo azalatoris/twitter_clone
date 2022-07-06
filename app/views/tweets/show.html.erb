@@ -4,6 +4,9 @@
 by <i><b>@<%= @tweet.user.name %></b></i><br>
 on <%= @tweet.created_at.strftime("%I:%M %p, %b %-dth, %Y") %><br><br>
 
+<%= button_to "Edit Tweet", edit_tweet_path(@tweet), method: :get, form: {style: 'display:inline-block'} %>
+<%= button_to "Destroy Tweet", tweet_path(@tweet), method: :delete, form: {style: 'display:inline-block'} %><br><br>
+
 <%= link_to "Explore the Users", users_path %><br>
 <%= link_to "Check out today's popular tweets", tweets_path %><br>
 <%= link_to "Create a new tweet", new_tweet_path %><br>

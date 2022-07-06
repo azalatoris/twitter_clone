@@ -3,7 +3,10 @@
 <% @tweets.each do |tweet| %>
   <b>@<%= tweet.user.handle %> at <%= tweet.created_at.strftime("%I:%M %p") %></b><br>
   <i><%= tweet.content %></i><br>
-  <%= tweet.likes.count.to_s.end_with?("1") ? "#{tweet.likes.count} person likes this" : "#{tweet.likes.count} people like this" %><br><br>
+  <%= tweet.likes.count.to_s.end_with?("1") ? "#{tweet.likes.count} person likes this" : "#{tweet.likes.count} people like this" %><br>
+  <%= button_to "Edit Tweet", edit_tweet_path(tweet), method: :get, form: {style: 'display:inline-block;'} %>
+  <%= button_to "Destroy Tweet", tweet_path(tweet), method: :delete, form: {style: 'display:inline-block;'} %>
+  <br><br>
 <% end %><br>
 
 <%= link_to "Create a new tweet", new_tweet_path %><br>
