@@ -1,0 +1,21 @@
+<h1>Edit Tweet</h1>
+
+<% if @tweet.errors.any? %>
+  <p> These errors prevented the tweet from being edited:
+    <ul>
+      <% @tweet.errors.full_messages.each do |msg| %>
+        <li> msg </li>
+      <% end %>
+    </ul>
+  </p>
+<% end %>
+
+<p>
+<%= form_with model: @tweet do |form| %>
+  User:<br>
+  <%= select(:tweet, :user_id, @user_options) %><br><br>
+  <%= form.label :content, "Content:" %><br>
+  <%= form.text_area :content %><br><br>
+  <%= form.submit "Retweet!" %>
+<% end %>
+</p>
