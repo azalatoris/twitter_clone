@@ -78,14 +78,15 @@ RSpec.describe 'API Users', type: :request do
       response
     end
 
-    let(:params) { {name: "Tony Hawk", handle: "thawk", bio: "Pro Skater"} }
+    let(:params) { {name: "Tony Hawk", handle: "thawk", bio: "Pro Skater", email: "thawk@gmail.com"} }
 
     specify { expect(api_response).to have_http_status(201) }
     specify do
       expect(JSON.parse(api_response.body)).to include({
         "name" => params[:name],
         "handle" => params[:handle],
-        "bio" => params[:bio]
+        "bio" => params[:bio],
+        "email" => params[:email]
       })
     end
     specify { expect { api_response }.to change(User, :count).by(1) }
