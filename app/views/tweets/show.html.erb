@@ -2,5 +2,8 @@
 
 <%= @tweet.content %><br>
 by <i><b>@<%= @tweet.user.name %></b></i><br>
-on <%= @tweet.created_at.strftime("%I:%M %p, %b %-dth, %Y") %>
+on <%= @tweet.created_at.strftime("%I:%M %p, %b %-dth, %Y") %><br><br>
 
+<%= link_to "Explore the Users", users_path %><br>
+<%= link_to "Check out today's popular tweets", tweets_path %><br>
+<%= link_to "Create a new tweet", new_tweet_path %><br>

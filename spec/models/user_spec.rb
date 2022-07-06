@@ -24,5 +24,8 @@ RSpec.describe User, type: :model do
   it { should validate_uniqueness_of(:handle) }
   it { should validate_uniqueness_of(:email) }
 
+  it { is_expected.to have_many(:tweets) }
+  it { is_expected.to have_many(:likes) }
+
 end
 
