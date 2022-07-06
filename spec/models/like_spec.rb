@@ -22,10 +22,10 @@ RSpec.describe Like, type: :model do
       end
       context 'creating a new like' do
     
-        specify do
-          Like.create(user: user, tweet: tweet)
-          expect(Like.find_by(user: user, tweet: tweet)).to be_a(Like)
-        end
+        # specify do
+        #   Like.create(user: user, tweet: tweet)
+        #   expect(Like.find_by(user: user, tweet: tweet)).to be_a(Like)
+        # end
       end
     end
   end
