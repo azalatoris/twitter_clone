@@ -1,26 +1,23 @@
 module Api
   class UsersController < Api::ApplicationController
-    before_action :set_user, only: [:show, :update, :destroy]
 
-    def index
+  def index
       render json: User.all, include: ''
     end
 
     def show
-      render json: @user
+      render json: User.find(params[:id])
     end
 
     def create
+      user = User.new(params.permit(:name, :handle, :bio, :email))
+      user.save
+      render json: user, status: :created
     end
 
     def destroy
       @user.destroy
     end
   
-    private
-
-    def set_user 
-      @user = User.find(params[:id])
-    end
   end
 end
