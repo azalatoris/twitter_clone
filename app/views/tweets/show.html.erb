@@ -1,7 +1,7 @@
 <h1> Tweet </h1>
 
 <%= @tweet.content %><br>
-by <i><b>@<%= @tweet.user.name %></b></i><br>
+by <i><b>@<%= @tweet.user.name %> ></b></i><br>
 on <%= @tweet.created_at.strftime("%I:%M %p, %b %-dth, %Y") %><br><br>
 
 <%= button_to "Edit Tweet", edit_tweet_path(@tweet), method: :get, form: {style: 'display:inline-block'} %>

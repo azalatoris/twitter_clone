@@ -20,7 +20,6 @@ RSpec.describe User, type: :model do
   it { should allow_value("a@a.com").for (:email) }
   it { should_not allow_value("algirdas.zalatoris").for (:email) }
 
-  it { should validate_uniqueness_of(:name) }
   it { should validate_uniqueness_of(:handle) }
   it { should validate_uniqueness_of(:email) }
 

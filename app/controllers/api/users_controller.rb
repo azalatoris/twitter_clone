@@ -1,16 +1,16 @@
 module Api
   class UsersController < Api::ApplicationController
-
   def index
-      render json: User.all, include: ''
-    end
+    @users = User.all
+    render json: @users, include: ''
+  end
 
     def show
       render json: User.find(params[:id])
     end
 
     def create
-      user = User.new(params.permit(:name, :handle, :bio, :email))
+      user = User.create(params.permit(:name, :handle, :bio, :email))
       if user.save
         render json: user, status: :created
       else
@@ -19,8 +19,9 @@ module Api
     end
 
     def destroy
-      @user.destroy
+      user = User.find(params[:id])
+      user.destroy
+      render json: user
     end
-  
   end
 end

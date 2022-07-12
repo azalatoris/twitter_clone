@@ -77,25 +77,25 @@ RSpec.describe 'API Users', type: :request do
 
   describe 'POST /api/users' do
     subject(:api_response) do
-      post '/api/users', params: params
+      post '/api/users', params: user_params
       response
     end
 
-    let(:params) { {name: "Tony Hawk", handle: "thawk", bio: "Pro Skater", email: "thawk@gmail.com"} }
+    let(:user_params) { {name: "Tony Hawk", handle: "thawk", bio: "Pro Skater", email: "thawk@gmail.com"} }
 
     specify { expect(api_response).to have_http_status(201) }
     specify do
       expect(JSON.parse(api_response.body)).to include({
-        "name" => params[:name],
-        "handle" => params[:handle],
-        "bio" => params[:bio],
-        "email" => params[:email]
-      })
+        "name" => user_params[:name],
+        "handle" => user_params[:handle],
+        "bio" => user_params[:bio],
+        "email" => user_params[:email]
+      }) #testing the body
     end
     specify { expect { api_response }.to change(User, :count).by(1) }
 
     context 'when params are incorrect' do
-      let(:params) { {name: ""} }
+      let(:user_params) { {name: ""} }
 
       specify { expect(api_response).to have_http_status(422) }
       specify { expect { api_response}.not_to change(User, :count) }
@@ -111,4 +111,45 @@ RSpec.describe 'API Users', type: :request do
       end
     end
   end
+
+  describe 'DELETE /api/users/:id' do
+    subject(:api_response) do
+      delete "/api/users/#{user.id}"
+      response
+    end
+
+    let!(:user) { User.create(name: "Algirdas", handle: "azalatoris", bio: "Coder", email: "z@g.ca") }
+
+    specify { expect(api_response).to have_http_status(200) }
+
+    specify do
+      expect(JSON.parse(api_response.body)).to include({
+        "name" => "Algirdas",
+        "handle" => "azalatoris",
+        "bio" => "Coder",
+        "email" => "z@g.ca"
+      })
+    end
+
+    specify do
+      api_response
+      expect { User.find(user.id) }.to raise_error(ActiveRecord::RecordNotFound) 
+    end
+
+    specify { expect {api_response}.to change(User, :count).by(-1) }
+  end
+
+  describe 'PATCH /api/users/:id' do
+    let!(:user_params) { {name: "Tony Hawk", handle: "thawk", bio: "Pro Skater", email: "thawk@gmail.com"} }
+
+    subject(:api_response) do
+      patch "/api/users/#{user.id}"
+      response
+    end
+
+    it 'updates the user' do
+      expect { api_response }.to change { user.reload.handle }.from("thawk").to("t_hawk")
+    end
+  end
+
 end
