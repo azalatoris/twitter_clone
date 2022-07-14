@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :handle, presence: true, length: { minimum: 4, maximum: 18 }, 
   format: { with: /\A[a-zA-Z0-9_.-]+\z/ }
 
-  validates :bio, length: { minimum: 4, maximum: 255 }
+  validates :bio, length: { maximum: 255 }
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 

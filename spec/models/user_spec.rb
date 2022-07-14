@@ -13,8 +13,6 @@ RSpec.describe User, type: :model do
   it { should allow_value("jon.35ka_").for (:handle) }
   it { should validate_length_of(:handle).is_at_least(4) }
   it { should validate_length_of(:handle).is_at_most(18) }
-
-  it { should validate_length_of(:bio).is_at_least(4) }
   it { should validate_length_of(:bio).is_at_most(255) }
 
   it { should allow_value("a@a.com").for (:email) }
