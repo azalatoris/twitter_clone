@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: %i[create index show update destroy]
     resources :tweets, only: %i[create index show update destroy]
+    resources :likes, only: %i[create index show update destroy]
   end
 end

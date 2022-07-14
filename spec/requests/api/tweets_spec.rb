@@ -116,7 +116,7 @@ RSpec.describe 'API Tweets', type: :request do
     let!(:user) { User.create(name: "Metallica", handle: "metallica", bio: "thrashers", email: "m@o.com") }
     let!(:tweet) { Tweet.create(content: "Hello World!", user_id: user.id) }
 
-    specify { expect(api_response).to have_http_status(200) }
+    it { is_expected.to have_http_status(200) }
 
     specify do
       expect(JSON.parse(api_response.body)).to include({
