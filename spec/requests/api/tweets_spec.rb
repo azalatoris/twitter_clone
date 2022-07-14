@@ -133,6 +133,3 @@ RSpec.describe 'API Tweets', type: :request do
     specify { expect {api_response}.to change(Tweet, :count).by(-1) }
   end
 end
-
-# specify { expect {api_response}.to change(User, :count).by(-1) }
-# end
