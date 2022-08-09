@@ -5,7 +5,6 @@ RSpec.describe User, type: :model do
   it { should_not allow_value(nil).for (:name) }
   it { should_not allow_value("Alg.rdas Zala45toris").for (:name)}
   it { should validate_length_of(:name).is_at_most(32) }
-  it { should validate_length_of(:name).is_at_least(6) }
 
   it { should allow_value("jonka").for (:handle) }
   it { should_not allow_value(nil).for (:handle) }

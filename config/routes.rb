@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     resources :tweets, only: %i[create index show update destroy]
     resources :likes, only: %i[create index show update destroy]
   end
+
+  post "/graphql", to: "graphql#graphql"
 end
